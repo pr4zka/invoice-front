@@ -4,8 +4,12 @@ import { useState } from "react";
 export default function Home() {
 
   const [file, setFile] = useState(null)
+  const [processing, setProcessing] = useState(false);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setProcessing(true);
     const formData = new FormData();
     formData.append('file', file);
   
@@ -39,6 +43,7 @@ export default function Home() {
       console.error('Error al obtener el PDF:', error.message);
       // Manejar el error, mostrar un mensaje al usuario, etc.
     }
+    setProcessing(false);
   }
   
 
@@ -97,7 +102,7 @@ export default function Home() {
                 <button
                   className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
                   >
-                  Procesar
+                  {processing ? 'Procesando...' : 'Generar'}
                 </button>
               </div>
               </form>
