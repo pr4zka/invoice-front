@@ -11,7 +11,7 @@ export async function POST(request) {
   formData.append('file', file);
 
   try {
-    const pdf_template = await axios.post(process.env.BACKEND_LOCAL_URL, formData, {
+    const pdf_template = await axios.post(process.env.BACKEND_URL, formData, {
       responseType: 'arraybuffer',
     });
 
